@@ -25,7 +25,7 @@ TypeScript Definitions for kakao.maps.* (Kakao(구 Daum) 지도 Web API)
 
 ```
 # npm
-$ npm kakao.maps.d.ts --save-dev
+$ npm install kakao.maps.d.ts --save-dev
 
 # yarn
 $ yarn add kakao.maps.d.ts --dev
