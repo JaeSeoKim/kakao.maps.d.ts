@@ -160,16 +160,8 @@ declare namespace kakao.maps.services {
          * 변환된 좌표 결과
          */
         result: Array<{
-          meta: {
-            /**
-             * 매칭된 문서수
-             */
-            total_count: number;
-          };
-          documents: Array<{
-            x: number;
-            y: number;
-          }>;
+          x: number;
+          y: number;
         }>,
         /**
          * 응답 코드
