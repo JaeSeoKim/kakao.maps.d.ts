@@ -25,7 +25,37 @@ declare namespace kakao.maps.services {
          *
          * @see [로컬 REST API 키워드로 장소 검색](https://developers.kakao.com/docs/latest/ko/local/dev-guide#address-coord)
          */
-        result: GeocoderAddressSearchResult,
+        result: Array<{
+          /**
+           * 전체 지번 주소 또는 전체 도로명 주소, 입력에 따라 결정됨
+           */
+          address_name: string;
+          /**
+           * address_name의 값의 타입(Type)
+           * 다음 중 하나:
+           * REGION(지명)
+           * ROAD(도로명)
+           * REGION_ADDR(지번 주소)
+           * ROAD_ADDR(도로명 주소)
+           */
+          address_type: "REGION" | "ROAD" | "REGION_ADDR" | "ROAD_ADDR";
+          /**
+           * X 좌표값, 경위도인 경우 경도(longitude)
+           */
+          x: string;
+          /**
+           * Y 좌표값, 경위도인 경우 위도(latitude)
+           */
+          y: string;
+          /**
+           * 지번 주소 상세 정보
+           */
+          address: Address;
+          /**
+           * 도로명 주소 상세 정보
+           */
+          road_address: RoadAaddress;
+        }>,
         /**
          * 응답 코드
          */
@@ -48,6 +78,45 @@ declare namespace kakao.maps.services {
          * 검색어 매칭 방식 선택 옵션. SIMILAR 일 경우 입력한 것과 유사한 검색어도 검색결과에 포함시킨다. EXACT 일 경우 입력한 주소 문자열과 정확하게 매칭되는 주소만을 찾아준다. 기본값은 SIMILAR
          */
         analyze_type: AnalyzeType;
+      }
+    ): void;
+
+    /**
+     * 좌표 값에 해당하는 구 주소와 도로명 주소 정보를 요청한다.
+     * 도로명 주소는 좌표에 따라서 표출되지 않을 수 있다.
+     *
+     * @param x x 좌표, 경위도인 경우 longitude
+     * @param y y 좌표, 경위도인 경우 latitude
+     * @param callback 검색 결과를 받을 콜백함수
+     * @param options
+     */
+    public coord2Address(
+      x: number,
+      y: number,
+      callback: (
+        /**
+         * 결과 목록
+         */
+        result: Array<{
+          /**
+           * 지번 주소 상세 정보
+           */
+          address: Address;
+          /**
+           * 도로명 주소 상세 정보
+           */
+          road_address: RoadAaddress | null;
+        }>,
+        /**
+         * 응답 코드
+         */
+        status: Status
+      ) => void,
+      options?: {
+        /**
+         * 입력 좌표 체계. 기본값은 WGS84
+         */
+        input_coord: Coords;
       }
     ): void;
 
@@ -96,40 +165,6 @@ declare namespace kakao.maps.services {
       }
     ): void;
   }
-
-  export type GeocoderAddressSearchResult = Array<GeocoderAddressSearchItem>;
-
-  export type GeocoderAddressSearchItem = {
-    /**
-     * 전체 지번 주소 또는 전체 도로명 주소, 입력에 따라 결정됨
-     */
-    address_name: string;
-    /**
-     * address_name의 값의 타입(Type)
-     * 다음 중 하나:
-     * REGION(지명)
-     * ROAD(도로명)
-     * REGION_ADDR(지번 주소)
-     * ROAD_ADDR(도로명 주소)
-     */
-    address_type: "REGION" | "ROAD" | "REGION_ADDR" | "ROAD_ADDR";
-    /**
-     * X 좌표값, 경위도인 경우 경도(longitude)
-     */
-    x: string;
-    /**
-     * Y 좌표값, 경위도인 경우 위도(latitude)
-     */
-    y: string;
-    /**
-     * 지번 주소 상세 정보
-     */
-    address: Address;
-    /**
-     * 도로명 주소 상세 정보
-     */
-    road_address: RoadAaddress;
-  };
 
   /**
    * 지번 주소 상세 정보
