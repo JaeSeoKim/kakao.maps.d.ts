@@ -121,6 +121,30 @@ declare namespace kakao.maps.services {
     ): void;
 
     /**
+     * 좌표 값에 해당하는 행정동, 법정동 정보를 얻는다.
+     *
+     * @param x x 좌표, 경위도인 경우 longitude
+     * @param y y 좌표, 경위도인 경우 latitude
+     * @param callback 검색 결과를 받을 콜백함수
+     * @param options
+     */
+    public coord2RegionCode(
+      x: number,
+      y: number,
+      callback: (result: Array<RegionCode>, status: Status) => void,
+      options?: {
+        /**
+         * 입력 좌표 체계. 기본값은 WGS84
+         */
+        input_coord: Coords;
+        /**
+         * 출력 좌표 체계. 기본값은 WGS84
+         */
+        output_coord: Coords;
+      }
+    ): void;
+
+    /**
      * 입력한 좌표를 다른 좌표계의 좌표로 변환한다.
      *
      * @param x 변환할 x 좌표
@@ -226,6 +250,45 @@ declare namespace kakao.maps.services {
      * Y 좌표값, 경위도인 경우 위도(latitude)
      */
     y: string;
+  };
+
+  export type RegionCode = {
+    /**
+     * H(행정동) 또는 B(법정동)
+     */
+    region_type: string;
+    /**
+     * 전체 지역 명칭
+     */
+    address_name: string;
+    /**
+     * 지역 1Depth, 시도 단위 바다 영역은 존재하지 않음
+     */
+    region_1depth_name: string;
+    /**
+     * 지역 2Depth, 구 단위 바다 영역은 존재하지 않음
+     */
+    region_2depth_name: string;
+    /**
+     * 지역 3Depth, 동 단위 바다 영역은 존재하지 않음
+     */
+    region_3depth_name: string;
+    /**
+     * 지역 4Depth, 리 영역인 경우만 존재 region_type이 법정동이며;
+     */
+    region_4depth_name: string;
+    /**
+     * region 코드
+     */
+    code: string;
+    /**
+     * X 좌표값, 경위도인 경우 경도(longitude)
+     */
+    x: number;
+    /**
+     * Y 좌표값, 경위도인 경우 위도(latitude)
+     */
+    y: number;
   };
 
   /**
