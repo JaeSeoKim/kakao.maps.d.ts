@@ -98,7 +98,7 @@ declare namespace kakao.maps {
      *
      * @param range
      */
-    public setRange(range: number): void;
+    public setRange(range: number = 500): void;
 
     /**
      * 커스텀 오버레이의 가시반경을 반환한다.

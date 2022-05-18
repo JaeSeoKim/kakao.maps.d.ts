@@ -11,6 +11,8 @@
     "url": "git+https://github.com/JaeSeoKim/kakao.maps.d.ts.git"
   },
   "keywords": [
+    "kakao map",
+    "kakao maps",
     "kakao-maps-api",
     "kakao.maps.d.ts",
     "types"

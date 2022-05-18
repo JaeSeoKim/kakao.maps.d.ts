@@ -145,7 +145,7 @@ declare namespace kakao.maps {
      * @param position
      */
     public addControl(
-      control: MapTypeControl | ZoomControl,
+      control: MapTypeControl | ZoomControl | kakao.maps.drawing.ToolboxElement,
       position: ControlPosition
     ): void;
 
@@ -154,7 +154,9 @@ declare namespace kakao.maps {
      *
      * @param control
      */
-    public removeControl(control: MapTypeControl | ZoomControl): void;
+    public removeControl(
+      control: MapTypeControl | ZoomControl | kakao.maps.drawing.ToolboxElement
+    ): void;
 
     /**
      * 마우스 드래그와 모바일 터치를 이용한 지도 이동 가능 여부를 설정한다.
@@ -231,10 +233,13 @@ declare namespace kakao.maps {
     /**
      * copyright의 위치를 설정한다.
      *
-     * @param copyrightPosition
+     * @param CopyrightPosition
      * @param reversed
      */
-    // public setCopyrightPosition(copyrightPosition: CopyrightPosition, reversed?: boolean): void
+    public setCopyrightPosition(
+      copyrightPosition: CopyrightPosition,
+      reversed?: boolean
+    ): void;
 
     /**
      * 지도의 좌표 변환 객체를 반환한다.
