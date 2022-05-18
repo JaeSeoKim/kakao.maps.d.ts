@@ -4,12 +4,14 @@ declare namespace kakao.maps.drawing {
   /**
    * @see [drawing.DrawingManager](https://apis.map.kakao.com/web/documentation/#drawing_DrawingManager)
    */
-  export class DrawingManager implements kakao.maps.event.EventTarget {
+  export class DrawingManager<T extends OverlayType = OverlayType>
+    implements kakao.maps.event.EventTarget
+  {
     /**
      * 그리기 관리자 객체를 생성한다.
      * @param options
      */
-    constructor(options: DrawingManagerOptions);
+    constructor(options: DrawingManagerOptions<T>);
 
     /**
      * 특정 그리기 요소의 스타일 속성을 설정한다.
@@ -18,7 +20,7 @@ declare namespace kakao.maps.drawing {
      * @param prop 설정할 속성 이름
      * @param value 설정할 속성 값
      */
-    public setStyle(type: OverlayType, prop: string, value: string | number);
+    public setStyle(type: T, prop: string, value: string | number);
 
     /**
      * 선을 사용하는 모든 그리기 요소들의 선 굵기를 설정한다.
@@ -41,7 +43,7 @@ declare namespace kakao.maps.drawing {
      * @param type 선택할 그리기 요소 타입
      * @param index 마커 이미지의 인덱스
      */
-    public select(type: OverlayType, index: number);
+    public select(type: T, index?: number);
 
     /**
      * 현재 그리기 요소로 선택한 것을 취소한다.
@@ -75,7 +77,7 @@ declare namespace kakao.maps.drawing {
      * 지도에 그려진 요소들 중 선택한 요소의 데이터를 반환한다.
      * 요소를 지정하지 않으면 그려진 모든 요소의 데이터를 반환한다.
      */
-    public getData(types: Array<OverlayType>): {
+    public getData(): {
       marker: Array<DrawingMarkerData>;
       rectangle: Array<DrawingRectangleData>;
       circle: Array<DrawingCircleData>;
@@ -84,6 +86,25 @@ declare namespace kakao.maps.drawing {
       arrow: Array<DrawingArrowData>;
       polygon: Array<DrawingPolylineData>;
     };
+
+    /**
+     * 지도에 그려진 요소들 중 선택한 요소의 데이터를 반환한다.
+     * 요소를 지정하지 않으면 그려진 모든 요소의 데이터를 반환한다.
+     */
+    public getData<T extends OverlayType>(
+      types: Array<T>
+    ): Pick<
+      {
+        marker: Array<DrawingMarkerData>;
+        rectangle: Array<DrawingRectangleData>;
+        circle: Array<DrawingCircleData>;
+        ellipse: Array<DrawingEllipseData>;
+        polyline: Array<DrawingPolylineData>;
+        arrow: Array<DrawingArrowData>;
+        polygon: Array<DrawingPolylineData>;
+      },
+      `${T}`
+    >;
 
     /**
      * 지도에 그려진 요소들 중 선택한 요소의 객체를 반환한다.
@@ -171,13 +192,7 @@ declare namespace kakao.maps.drawing {
      *
      * @param overlay 그리기 관리자에서 생성한 확장 오버레이 객체
      */
-    public remove(
-      overlay: /*
-      TODO: ExtendsOverlay 정의 필요...
-      카카오 문서에 제대로 타입좀 알려주세요...
-      https://apis.map.kakao.com/web/documentation/#drawing_DrawingManager_remove
-      */ any
-    );
+    public remove(overlay: ExtendsOverlay);
 
     /**
      * 그리기 관련 이벤트를 작업할 때 발생한다.
@@ -206,21 +221,26 @@ declare namespace kakao.maps.drawing {
     public addListener(event: "state_changed", callback: () => void);
   }
 
-  export interface DrawingManagerOptions {
-    /**
-     * 마커와 그리기 요소를 그릴 지도 객체
-     */
-    map: Map;
+  export type DrawingManagerOptions<T extends OverlayType> =
+    Partial<OverlayOptions> &
+      Pick<OverlayOptions, `${T}Options`> & {
+        /**
+         * 마커와 그리기 요소를 그릴 지도 객체
+         */
+        map: Map;
 
-    /**
-     * 마우스 오버 시 가이드 툴팁 표시 여부. ‘draw’, ‘drag’, ‘edit’ 3가지를 지정할 수 있다 (기본값: 모두 표시 안함)
-     * 예를들어 [‘draw’]로 설정하면 객체를 그릴때 가이드 툴팁이 표시된다
-     */
-    guideTooltip?: Array<"draw" | "drag" | "edit">;
-    /**
-     * 사용할 그리기 요소 지정한다 (기본값: 모든 그리기 요소)
-     */
-    drawingMode?: Array<OverlayType>;
+        /**
+         * 마우스 오버 시 가이드 툴팁 표시 여부. ‘draw’, ‘drag’, ‘edit’ 3가지를 지정할 수 있다 (기본값: 모두 표시 안함)
+         * 예를들어 [‘draw’]로 설정하면 객체를 그릴때 가이드 툴팁이 표시된다
+         */
+        guideTooltip?: Array<"draw" | "drag" | "edit">;
+        /**
+         * 사용할 그리기 요소 지정한다 (기본값: 모든 그리기 요소)
+         */
+        drawingMode?: Array<T>;
+      };
+
+  export type OverlayOptions = {
     /**
      * 마커 그리기 옵션
      */
@@ -249,7 +269,7 @@ declare namespace kakao.maps.drawing {
      * 다각형 그리기 옵션
      */
     polygonOptions: PolygonOptions;
-  }
+  };
 
   /**
    * DrawingManager 의 생성자 옵션에서 마커의 그리기 옵션인 markerOptions 에 설정 가능한 항목들을 설명한다.
@@ -588,6 +608,14 @@ declare namespace kakao.maps.drawing {
      * 채우기 불토명도 (0-1, 기본값: 0)
      */
     fillOpacity?: number;
+    /**
+     * 그리기 중, 마우스를 따라다니는 보조선의 스타일 (기본값: ‘solid’)
+     */
+    hintStrokeStyle?: string;
+    /**
+     * 그리기 중, 마우스를 따라다니는 보조선의 투명도. (기본값: 0.5)
+     */
+    hintStrokeOpacity?: number;
   }
 
   /**
