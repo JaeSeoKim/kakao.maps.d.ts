@@ -692,7 +692,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 화살표 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
     };
     points: Array<{
       /**
@@ -736,7 +736,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
     };
     points: Array<{
       /**
@@ -780,7 +780,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
       /**
        * #xxxxxx 형태의 채우기 색 (기본값: ‘#F10000’)
        */
@@ -848,7 +848,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
       /**
        * #xxxxxx 형태의 채우기 색 (기본값: ‘#F10000’)
        */
@@ -933,7 +933,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
       /**
        * #xxxxxx 형태의 채우기 색 (기본값: ‘#F10000’)
        */
@@ -1022,7 +1022,7 @@ declare namespace kakao.maps.drawing {
       /**
        * 선 스타일 (기본값: ‘solid’)
        */
-      strokeStyle: string;
+      strokeStyle: kakao.maps.StrokeStyles;
       /**
        * #xxxxxx 형태의 채우기 색 (기본값: ‘#F10000’)
        */
