@@ -67,6 +67,27 @@ declare namespace kakao.maps {
     /**
      * 이미지 지도에 표시할 마커 또는 마커 배열
      */
-    marker: Marker | Array<Marker>;
+    marker:
+      | boolean
+      | {
+          /**
+           * 마커 tooltip에 표시될 내용
+           */
+          text?: string;
+          /**
+           * 마커 포지션
+           */
+          position?: LatLng;
+        }
+      | Array<{
+          /**
+           * 마커 tooltip에 표시될 내용
+           */
+          text?: string;
+          /**
+           * 마커 포지션
+           */
+          position: LatLng;
+        }>;
   }
 }
