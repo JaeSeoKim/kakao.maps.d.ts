@@ -14,11 +14,11 @@ declare namespace kakao.maps.event {
     /**
      * 지도 좌표
      */
-    latLng?: kakao.maps.LatLng;
+    latLng: kakao.maps.LatLng;
 
     /**
      * 화면 좌표
      */
-    point?: kakao.maps.Point;
+    point: kakao.maps.Point;
   }
 }
