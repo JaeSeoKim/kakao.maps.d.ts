@@ -90,13 +90,13 @@ declare namespace kakao.maps {
     /**
      * 엘리먼트 또는 HTML 문자열 형태의 내용
      */
-    content: string | HTMLElement;
+    content?: string | HTMLElement;
 
 
     /**
      * 인포윈도우의 좌표
      */
-    position: LatLng | Viewpoint;
+    position?: LatLng | Viewpoint;
 
     /**
      * 인포윈도우가 올라갈 지도 또는 로드뷰
