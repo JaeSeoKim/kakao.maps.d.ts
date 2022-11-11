@@ -133,7 +133,7 @@ declare namespace kakao.maps.services {
     /**
      * 키워드 필터링을 위한 카테고리 코드
      */
-    category_group_code?: CategoryGroupCode;
+    category_group_code?: `${CategoryCode}` | `${Exclude<CategoryCode, "">}`[];
 
     /**
      * 중심 좌표. 특정 지역을 기준으로 검색한다.
