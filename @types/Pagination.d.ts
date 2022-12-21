@@ -50,5 +50,15 @@ declare namespace kakao.maps {
      * 현재 페이지 번호
      */
     current: number;
+
+    /**
+     * 첫번째 페이지 번호
+     */
+    first: number;
+
+    /**
+     * 마지막 페이지 번호
+     */
+    last: number;
   }
 }
