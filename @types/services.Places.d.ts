@@ -85,7 +85,7 @@ declare namespace kakao.maps.services {
      * 중요 카테고리만 그룹핑한 카테고리 그룹 코드
      * 예) FD6
      */
-    category_group_code: CategoryGroupCode;
+    category_group_code?: `${CategoryCode}` | `${Exclude<CategoryCode, "">}`[];
 
     /**
      * 중요 카테고리만 그룹핑한 카테고리 그룹명
