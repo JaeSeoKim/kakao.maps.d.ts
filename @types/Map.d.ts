@@ -198,7 +198,7 @@ declare namespace kakao.maps {
     public getProjectionId(): ProjectionId;
 
     /**
-     * 지도를 표시하는 HTML elemente의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
+     * 지도를 표시하는 HTML element의 크기를 변경한 후에는 반드시 이 함수를 호출해야 한다.
      * 단, window의 resize 이벤트에 대해서는 자동으로 호출한다.
      */
     public relayout(): void;
