@@ -53,11 +53,13 @@ declare namespace kakao.maps {
 
     /**
      * 첫번째 페이지 번호
+     * @experimental
      */
     first: number;
 
     /**
      * 마지막 페이지 번호
+     * @experimental
      */
     last: number;
   }
