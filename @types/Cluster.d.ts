@@ -23,9 +23,9 @@ declare namespace kakao.maps {
     getSize(): number;
 
     /**
-     * 클러스터에 포함된 마커들을 배열로 반환한다.
+     * 클러스터에 포함된 마커, 또는 커스텀 오버레이들을 배열로 반환한다.
      */
-    getMarkers(): Marker[];
+    getMarkers(): Marker[] | CustomOverlay[];
 
     /**
      * 클러스터 오버레이를 반환한다.
