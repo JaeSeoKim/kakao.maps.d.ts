@@ -4,8 +4,12 @@
   "description": "Kakao Map API Type Definitions",
   "types": "./@types/index.d.ts",
   "typeRoots": "./@types",
-  "dependencies": {},
-  "devDependencies": {},
+  "scripts": {
+    "type": "tsc --project ./tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JaeSeoKim/kakao.maps.d.ts.git"

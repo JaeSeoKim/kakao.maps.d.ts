@@ -97,8 +97,9 @@ declare namespace kakao.maps {
      * 단위는 m(미터)이며 기본값은 500m이다.
      *
      * @param range
+     * @default 500
      */
-    public setRange(range: number = 500): void;
+    public setRange(range: number): void;
 
     /**
      * 커스텀 오버레이의 가시반경을 반환한다.

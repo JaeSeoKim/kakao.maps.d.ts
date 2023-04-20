@@ -29,7 +29,7 @@ declare namespace kakao.maps.services {
      * @param options
      */
     public keywordSearch(
-      keyword: Cate,
+      keyword: string,
       callback: (
         result: PlacesSearchResult,
         status: Status,

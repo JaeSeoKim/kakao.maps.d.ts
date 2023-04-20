@@ -56,7 +56,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  export interface setRectangleOptions extends RectangleOptions {
+  export type setRectangleOptions = RectangleOptions & {
     /**
      * 사각형의 영역
      */

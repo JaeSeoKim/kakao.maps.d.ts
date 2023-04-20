@@ -18,7 +18,7 @@ declare namespace kakao.maps {
      * 이미지 지도의 중심 좌표를 설정한다.
      * @param latlng
      */
-    public setCenter(latlng: LatLng);
+    public setCenter(latlng: LatLng): void;
 
     /**
      * 이미지 지도의 중심 좌표를 반환한다.
@@ -30,7 +30,7 @@ declare namespace kakao.maps {
      * 0부터 14까지의 정수이며, 값이 작을수록 확대된다.
      * @param level
      */
-    public setLevel(level: number);
+    public setLevel(level: number): void;
 
     /**
      * 이미지 지도의 확대 수준을 반환한다.
@@ -42,7 +42,7 @@ declare namespace kakao.maps {
      * 이미지 지도 타입을 설정한다.
      * @param mapTypeId
      */
-    public setMapTypeId(mapTypeId: MapTypeId);
+    public setMapTypeId(mapTypeId: MapTypeId): void;
 
     /**
      * 이미지 지도 타입을 반환한다.
@@ -68,26 +68,26 @@ declare namespace kakao.maps {
      * 이미지 지도에 표시할 마커 또는 마커 배열
      */
     marker:
-      | boolean
-      | {
-          /**
-           * 마커 tooltip에 표시될 내용
-           */
-          text?: string;
-          /**
-           * 마커 포지션
-           */
-          position?: LatLng;
-        }
-      | Array<{
-          /**
-           * 마커 tooltip에 표시될 내용
-           */
-          text?: string;
-          /**
-           * 마커 포지션
-           */
-          position: LatLng;
-        }>;
+    | boolean
+    | {
+      /**
+       * 마커 tooltip에 표시될 내용
+       */
+      text?: string;
+      /**
+       * 마커 포지션
+       */
+      position?: LatLng;
+    }
+    | Array<{
+      /**
+       * 마커 tooltip에 표시될 내용
+       */
+      text?: string;
+      /**
+       * 마커 포지션
+       */
+      position: LatLng;
+    }>;
   }
 }

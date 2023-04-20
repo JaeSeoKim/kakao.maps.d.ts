@@ -86,7 +86,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  interface setEllipseOptions extends EllipseOptions {
+  type setEllipseOptions = EllipseOptions & {
     /**
      * 중심 좌표
      */
