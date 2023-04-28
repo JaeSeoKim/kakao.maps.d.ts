@@ -5,7 +5,8 @@ declare namespace kakao.maps.drawing {
    * @see [drawing.DrawingManager](https://apis.map.kakao.com/web/documentation/#drawing_DrawingManager)
    */
   export class DrawingManager<T extends OverlayType = OverlayType>
-    implements kakao.maps.event.EventTarget {
+    implements kakao.maps.event.EventTarget
+  {
     /**
      * 그리기 관리자 객체를 생성한다.
      * @param options
@@ -19,7 +20,11 @@ declare namespace kakao.maps.drawing {
      * @param prop 설정할 속성 이름
      * @param value 설정할 속성 값
      */
-    public setStyle(type: T, prop: string, value: string | number): void;
+    public setStyle(
+      type: T | `${T}`,
+      prop: string,
+      value: string | number
+    ): void;
 
     /**
      * 선을 사용하는 모든 그리기 요소들의 선 굵기를 설정한다.
@@ -42,7 +47,7 @@ declare namespace kakao.maps.drawing {
      * @param type 선택할 그리기 요소 타입
      * @param index 마커 이미지의 인덱스
      */
-    public select(type: T, index?: number): void;
+    public select(type: T | `${T}`, index?: number): void;
 
     /**
      * 현재 그리기 요소로 선택한 것을 취소한다.
@@ -91,7 +96,7 @@ declare namespace kakao.maps.drawing {
      * 요소를 지정하지 않으면 그려진 모든 요소의 데이터를 반환한다.
      */
     public getData<T extends OverlayType>(
-      types: Array<T>
+      types: Array<T | `${T}`>
     ): Pick<
       {
         marker: Array<DrawingMarkerData>;
@@ -124,7 +129,7 @@ declare namespace kakao.maps.drawing {
      * 요소를 지정하지 않으면 그려진 모든 요소의 객체를 반환한다.
      */
     public getOverlays<T extends OverlayType>(
-      types: Array<T>
+      types: Array<T | `${T}`>
     ): Pick<
       {
         marker: Array<DrawingMarkerData>;
@@ -147,7 +152,7 @@ declare namespace kakao.maps.drawing {
      * @param index 마커 이미지의 인덱스
      */
     public put(
-      overlayType: OverlayType.MARKER,
+      overlayType: OverlayType.MARKER | `${OverlayType.MARKER}`,
       position: LatLng,
       index: number
     ): void;
@@ -160,7 +165,11 @@ declare namespace kakao.maps.drawing {
      * @param center
      * @param radius 반지름
      */
-    public put(overlayType: OverlayType.CIRCLE, center: LatLng, radius: number): void;
+    public put(
+      overlayType: OverlayType.CIRCLE | `${OverlayType.CIRCLE}`,
+      center: LatLng,
+      radius: number
+    ): void;
 
     /**
      * 그리기 관리자 객체에 그리기 요소를 넣는다.
@@ -169,7 +178,10 @@ declare namespace kakao.maps.drawing {
      * @param overlayType 그리기 관리자에 추가할 오버레이 타입
      * @param bounds
      */
-    public put(overlayType: OverlayType.RECTANGLE, bounds: LatLngBounds): void;
+    public put(
+      overlayType: OverlayType.RECTANGLE | `${OverlayType.RECTANGLE}`,
+      bounds: LatLngBounds
+    ): void;
 
     /**
      * 그리기 관리자 객체에 그리기 요소를 넣는다.
@@ -179,10 +191,15 @@ declare namespace kakao.maps.drawing {
      * @param paths
      */
     public put(
-      overlayType: Exclude<
-        OverlayType,
-        OverlayType.MARKER | OverlayType.CIRCLE | OverlayType.RECTANGLE
-      >,
+      overlayType:
+        | Exclude<
+            OverlayType,
+            OverlayType.MARKER | OverlayType.CIRCLE | OverlayType.RECTANGLE
+          >
+        | `${Exclude<
+            OverlayType,
+            OverlayType.MARKER | OverlayType.CIRCLE | OverlayType.RECTANGLE
+          >}`,
       paths: Array<LatLng>
     ): void;
 
@@ -217,27 +234,27 @@ declare namespace kakao.maps.drawing {
      * @param event
      * @param callback
      */
-    public addListener(event: "state_changed", callback: () => void) : void;
+    public addListener(event: "state_changed", callback: () => void): void;
   }
 
   export type DrawingManagerOptions<T extends OverlayType> =
     Partial<OverlayOptions> &
-    Pick<OverlayOptions, `${T}Options`> & {
-      /**
-       * 마커와 그리기 요소를 그릴 지도 객체
-       */
-      map: Map;
+      Pick<OverlayOptions, `${T}Options`> & {
+        /**
+         * 마커와 그리기 요소를 그릴 지도 객체
+         */
+        map: Map;
 
-      /**
-       * 마우스 오버 시 가이드 툴팁 표시 여부. ‘draw’, ‘drag’, ‘edit’ 3가지를 지정할 수 있다 (기본값: 모두 표시 안함)
-       * 예를들어 [‘draw’]로 설정하면 객체를 그릴때 가이드 툴팁이 표시된다
-       */
-      guideTooltip?: Array<"draw" | "drag" | "edit">;
-      /**
-       * 사용할 그리기 요소 지정한다 (기본값: 모든 그리기 요소)
-       */
-      drawingMode?: Array<T>;
-    };
+        /**
+         * 마우스 오버 시 가이드 툴팁 표시 여부. ‘draw’, ‘drag’, ‘edit’ 3가지를 지정할 수 있다 (기본값: 모두 표시 안함)
+         * 예를들어 [‘draw’]로 설정하면 객체를 그릴때 가이드 툴팁이 표시된다
+         */
+        guideTooltip?: Array<"draw" | "drag" | "edit">;
+        /**
+         * 사용할 그리기 요소 지정한다 (기본값: 모든 그리기 요소)
+         */
+        drawingMode?: Array<T | `${T}`>;
+      };
 
   export type OverlayOptions = {
     /**
@@ -633,8 +650,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     /**
      * marker 객체의 ImageOptions
      */
@@ -665,8 +682,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 끝점의 화살표 표시 여부 (기본값: false)
@@ -717,8 +734,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 선의 두께 (기본값: 3)
@@ -761,8 +778,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 선의 두께 (기본값: 3)
@@ -829,8 +846,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 선의 두께 (기본값: 3)
@@ -914,8 +931,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 선의 두께 (기본값: 3)
@@ -1003,8 +1020,8 @@ declare namespace kakao.maps.drawing {
      * 좌표계 타입 (example: "wgs84")
      */
     coordinate:
-    | kakao.maps.services.Coords
-    | Lowercase<`${kakao.maps.services.Coords}`>;
+      | kakao.maps.services.Coords
+      | Lowercase<`${kakao.maps.services.Coords}`>;
     options: {
       /**
        * 선의 두께 (기본값: 3)
