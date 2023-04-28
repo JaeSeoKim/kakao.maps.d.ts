@@ -72,16 +72,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  type setCircleOptions = CircleOptions & {
-    /**
-     * 중심 좌표
-     */
-    center?: LatLng;
-    /**
-     * 미터 단위의 반지름
-     */
-    radius?: number;
-  }
+  type setCircleOptions = Partial<CircleOptions>
 
   export interface CircleOptions {
     /**

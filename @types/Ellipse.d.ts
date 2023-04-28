@@ -86,20 +86,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  type setEllipseOptions = EllipseOptions & {
-    /**
-     * 중심 좌표
-     */
-    center?: LatLng;
-    /**
-     * 미터 단위의 x축 반지름
-     */
-    rx?: number;
-    /**
-     * 미터 단위의 y축 반지름
-     */
-    ry?: number;
-  }
+  type setEllipseOptions = Partial<EllipseOptions>
 
   export interface EllipseOptions {
     /**

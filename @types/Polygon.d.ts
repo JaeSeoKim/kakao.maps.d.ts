@@ -67,12 +67,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  export type setPolygonOptions = PolygonOptions & {
-    /**
-     * 다각형을 구성하는 좌표의 배열 혹은 좌표 배열의 배열
-     */
-    path?: LatLng[] | LatLng[][];
-  }
+  export type setPolygonOptions = Partial<PolygonOptions>;
 
   export interface PolygonOptions {
     /**

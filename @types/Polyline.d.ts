@@ -62,12 +62,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  export type setPolylineOptions = PolylineOptions & {
-    /**
-     * 폴리라인을 구성하는 좌표의 배열 혹은 좌표 배열의 배열
-     */
-    path?: LatLng[] | LatLng[][];
-  }
+  export type setPolylineOptions = Partial<PolylineOptions>
 
   export interface PolylineOptions {
     /**

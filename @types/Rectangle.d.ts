@@ -56,12 +56,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  export type setRectangleOptions = RectangleOptions & {
-    /**
-     * 사각형의 영역
-     */
-    bounds?: LatLngBounds;
-  }
+  export type setRectangleOptions = Partial<RectangleOptions>;
 
   export interface RectangleOptions {
     /**
