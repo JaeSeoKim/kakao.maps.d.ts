@@ -66,6 +66,11 @@ declare namespace kakao.maps {
 
   export interface PolylineOptions {
     /**
+     * 폴리라인이 올라갈 지도 또는 로드뷰
+     */
+    map?: Map;
+
+    /**
      * 화살표 여부
      */
     endArrow?: boolean;

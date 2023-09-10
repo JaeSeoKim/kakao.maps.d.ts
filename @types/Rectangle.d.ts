@@ -60,6 +60,11 @@ declare namespace kakao.maps {
 
   export interface RectangleOptions {
     /**
+     * 사각형이 올라갈 지도
+     */
+    map?: Map;
+
+    /**
      * 사각형의 영역
      */
     bounds: LatLngBounds;

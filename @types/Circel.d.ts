@@ -76,6 +76,11 @@ declare namespace kakao.maps {
 
   export interface CircleOptions {
     /**
+     * 원이 올라갈 지도
+     */
+    map?: Map;
+
+    /**
      * 중심 좌표
      */
     center: LatLng;
