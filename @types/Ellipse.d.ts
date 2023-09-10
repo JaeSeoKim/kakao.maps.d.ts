@@ -86,9 +86,13 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  type setEllipseOptions = Partial<EllipseOptions>
+  type setEllipseOptions = Partial<EllipseOptions>;
 
   export interface EllipseOptions {
+    /**
+     * 타원이 올라갈 지도
+     */
+    map?: Map;
     /**
      * 중심 좌표
      */
