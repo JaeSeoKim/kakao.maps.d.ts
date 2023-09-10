@@ -160,7 +160,7 @@ declare namespace kakao.maps {
     /**
      * 마커가 올라갈 지도 또는 로드뷰
      */
-    map?: Map | Roadview | Roadview;
+    map?: Map | Roadview;
 
     /**
      * 마커의 좌표 또는 로드뷰에서의 시점
