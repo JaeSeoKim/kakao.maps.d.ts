@@ -71,6 +71,11 @@ declare namespace kakao.maps {
 
   export interface PolygonOptions {
     /**
+     * 다각형이 올라갈 지도
+     */
+    map?: Map;
+
+    /**
      * #xxxxxx 형태의 채움 색 (기본값: ‘#F10000’)
      */
     fillColor?: string;
