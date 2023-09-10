@@ -68,7 +68,7 @@ declare namespace kakao.maps {
     /**
      * 폴리라인이 올라갈 지도 또는 로드뷰
      */
-    map?: Map | Roadview | Roadview;
+    map?: Map;
 
     /**
      * 화살표 여부
