@@ -72,7 +72,7 @@ declare namespace kakao.maps {
     public getZIndex(): number;
   }
 
-  type setCircleOptions = Partial<CircleOptions>
+  type setCircleOptions = Partial<CircleOptions>;
 
   export interface CircleOptions {
     /**
