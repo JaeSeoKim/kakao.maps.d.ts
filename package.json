@@ -1,6 +1,6 @@
 {
   "name": "kakao.maps.d.ts",
-  "version": "0.1.39",
+  "version": "0.1.40",
   "description": "Kakao Map API Type Definitions",
   "types": "./@types/index.d.ts",
   "typeRoots": "./@types",
